@@ -19,7 +19,6 @@
 
          $sql = "SELECT * FROM prenotazioni_has_ospiti JOIN ospiti ON prenotazioni_has_ospiti.ospite_id = ospiti.id WHERE prenotazioni_has_ospiti.id =" . $pren_id;
          $result = $conn -> query($sql);
-
          if($result -> num_rows > 0){ ?>
             <div id="details_cnt">
                <ul>

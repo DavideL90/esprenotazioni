@@ -4,6 +4,18 @@
    padding: 0;
 }
 
+body{
+   display: flex;
+   flex-direction: column;
+}
+form{
+   margin: 50px auto;
+}
+
+select{
+   width: 150px;
+}
+
 a{
    text-decoration: none;
    color: black;

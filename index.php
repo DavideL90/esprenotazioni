@@ -6,24 +6,32 @@
       <title></title>
    </head>
    <body>
-
+      <!-- Connessione al database -->
       <?php
          $conn = new mysqli('localhost', 'root', 'ciao', 'hotel_prova');
          if($conn -> connect_error){
             echo 'Errore';
             die();
          }
+         // Query tabella prenotazioni
          $sql = "SELECT * FROM prenotazioni";
-         $sql1 = "SELECT * FROM prenotazioni_has_ospiti";
          $result = $conn -> query($sql);
+         // Query tabella ponte
+         $sql1 = "SELECT * FROM prenotazioni_has_ospiti";
          $result1 = $conn -> query($sql1);
+
          if($result1 -> num_rows > 0){ ?>
 
-            <form action="index.html" method="post">
-               <select class="" name="prenotazione_id">
-                  <?php while($row1 = $result -> fetch_assoc()){ ?>
-                        <option <?php echo $row1["prenotazione_id"]?> > Cod. Pren: <?php echo $row1["prenotazione_id"] ?></option>
+            <form action="new.php" method="post">
+               <select class="" name="ospiti_id">
+                  <?php while($row = $result1 -> fetch_assoc()){ ?>
+                        <option <?php echo $row["ospite_id"]?> > Codice Ospite: <?php echo $row["ospite_id"] ?></option>
                      <?php } ?>
+               </select>
+               <select class="" name="prenotazione_id">
+                  <?php while($row = $result1 -> fetch_assoc()){ var_dump($row); die(); ?>
+                     <option <?php echo $row["prenotazione_id"]?> > Codice Pren.: <?php echo $row["prenotazione_id"] ?></option>
+                  <?php } ?>
                </select>
             </form>
 
